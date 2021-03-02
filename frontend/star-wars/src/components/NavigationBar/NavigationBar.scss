@@ -1,0 +1,27 @@
+.navigationBar {
+  width: 100%;
+  ul {
+    list-style-type: none;
+    margin: 1px;
+    padding: 1px;
+    overflow: hidden;
+    background-color: #e3dfe7;
+  }
+
+  li {
+    float: left;
+  }
+
+  li a {
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 15px 17px;
+    text-decoration: none;
+    color: #434244;
+  }
+
+  li a:hover {
+    background-color: #9fddf0;
+  }
+}

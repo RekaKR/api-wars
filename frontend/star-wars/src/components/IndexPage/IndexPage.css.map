@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACd,OAAO,EAAE,KAAK;CACd",
+    "sources": [
+        "IndexPage.scss"
+    ],
+    "names": [],
+    "file": "IndexPage.css"
+}
