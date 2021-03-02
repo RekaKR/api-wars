@@ -1,24 +1,29 @@
-import React from "react";
-import "./NavigationBar.css";
-
+import React from 'react';
+import './NavigationBar.css';
+import Login from '../Login/Login';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Register from '../Register/Register';
 const NavigationBar = () => {
   return (
-    <div className="navigationBar">
+    <div className='navigationBar'>
       <ul>
         <li>
-          <a href="">Planet list</a>
+          <Link to='/'> Home</Link>
         </li>
         <li>
-          <a href="">Voting statistics</a>
+          <Link to=''>Planet list</Link>
         </li>
         <li>
-          <a href="">Registration</a>
+          <Link to=''>Voting statistics</Link>
         </li>
         <li>
-          <a href="">Login</a>
+          <Link to='/register'>Registration</Link>
         </li>
         <li>
-          <a href="">Logout</a>
+          <Link to='/login'>Login</Link>
+        </li>
+        <li>
+          <Link to=''>Logout</Link>
         </li>
       </ul>
     </div>
