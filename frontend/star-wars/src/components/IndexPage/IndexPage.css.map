@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACd,OAAO,EAAE,KAAK;CAQd;;AATD,AAEC,cAFa,CAEb,QAAQ,CAAC;EACR,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,IAAI;CAInB;;AARF,AAKE,cALY,CAEb,QAAQ,CAGP,KAAK,CAAC;EACL,WAAW,EAAE,IAAI;CACjB",
+    "sources": [
+        "IndexPage.scss"
+    ],
+    "names": [],
+    "file": "IndexPage.css"
+}
