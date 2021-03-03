@@ -1,7 +1,7 @@
-import "./App.css";
 import React from "react";
 import IndexPage from "./components/IndexPage/IndexPage.jsx";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
+import "./style/CSS/App/App.css";
 
 function App() {
   return (

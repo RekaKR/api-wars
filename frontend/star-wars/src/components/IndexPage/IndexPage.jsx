@@ -7,9 +7,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import SingleRow from "./SingleRow";
+import SingleRow from "../SingleIndexPRow/SingleIndexPRow";
 import { v4 as uuidv4 } from "uuid";
-import "./IndexPage.css";
+import "../../style/CSS/IndexPage/IndexPage.css";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
@@ -34,11 +34,13 @@ function IndexPage() {
     <div className="starWarsTable">
       <h1>Star Wars universe planets</h1>
       <div className="buttons">
-        <Button className="previous" onClick={() => (page > 1 ? setPage(page - 1) : setPage(1))} className="previous" variant="contained" color="primary">
+        <Button className="previous" onClick={() => (page > 1 ? setPage(page - 1) : setPage(1))} disabled={page === 1 ? true : false}
+          className="previous" variant="contained" color="primary">
           Previous
         </Button>
 
-        <Button onClick={() => (page < 6 ? setPage(page + 1) : setPage(6))} className="next" variant="contained" color="primary">
+        <Button onClick={() => (page < 6 ? setPage(page + 1) : setPage(6))} disabled={page === 6 ? true : false}
+          className="next" variant="contained" color="primary">
           Next
         </Button>
       </div>
@@ -73,7 +75,7 @@ function IndexPage() {
           </TableHead>
           <TableBody>
             {data.map((row) => (
-              <SingleRow key={uuidv4()} row={row} />
+              <SingleRow key={uuidv4()} row={row} data={data} />
             ))}
           </TableBody>
         </Table>
