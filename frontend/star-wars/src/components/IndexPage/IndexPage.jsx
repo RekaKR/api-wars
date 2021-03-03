@@ -27,14 +27,14 @@ function IndexPage() {
   useEffect(() => {
     if (page >= 1) {
       rootE.style.opacity = '0.5';
-      setIsShown(true)
+      setIsShown(true);
 
       fetch(`https://swapi.dev/api/planets/?page=${page}`)
         .then((response) => response.json())
         .then((data) => {
           rootE.style.opacity = '1';
-          setIsShown(false)
-          setData(data.results)
+          setIsShown(false);
+          setData(data.results);
         });
     }
   }, [page]);
