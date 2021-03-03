@@ -4,11 +4,11 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import SingleRow from "../SingleIndexPRow/SingleIndexPRow";
 import { v4 as uuidv4 } from "uuid";
-import "../../style/CSS/IndexPage/IndexPage.css";
 import Buttons from "../Buttons/Buttons";
 import SingleIndexPHead from "../SingleIndexPHead/SingleIndexPHead";
+import SingleIndexPRow from "../SingleIndexPRow/SingleIndexPRow";
+import "../../style/CSS/IndexPage/IndexPage.css";
 
 const useStyles = makeStyles({
   table: {
@@ -40,7 +40,7 @@ function IndexPage() {
 
           <TableBody>
             {data.map((row) => (
-              <SingleRow key={uuidv4()} row={row} data={data} />
+              <SingleIndexPRow key={uuidv4()} row={row} data={data} />
             ))}
           </TableBody>
         </Table>
@@ -50,3 +50,5 @@ function IndexPage() {
 }
 
 export default IndexPage;
+
+//row.residents.map(result => console.log(result))

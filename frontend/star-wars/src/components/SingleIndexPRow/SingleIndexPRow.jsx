@@ -3,17 +3,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import VoteButton from "../VoteButton/VoteButton";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import ModalSingle from '../ModalSingle/ModalSingle';
+import ModalSingle from '../ModalSingle/ModalSingle';
 
 function separateNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-//<ModalSingle />
-
-
 function SingleRow(props) {
-
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -35,7 +31,7 @@ function SingleRow(props) {
         <TableCell align="left"><VoteButton /></TableCell>
       </TableRow>
 
-      {/*<ModalSingle show={modalShow} onHide={() => setModalShow(false)} data={props.data} />*/}
+      <ModalSingle show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 
