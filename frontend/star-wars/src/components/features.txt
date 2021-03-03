@@ -1,0 +1,20 @@
+/*onClick={(e) => {
+            if (page === 6) {
+              e.target.parentElement.setAttribute(
+                "class",
+                "MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled Mui-disabled"
+              );
+              e.target.parentElement.setAttribute("disabled", "");
+            } else {
+              e.target.parentElement.setAttribute(
+                "class",
+                "MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+              );
+            }
+            page < 6 ? setPage(page + 1) : setPage(6);
+          }}
+          className="next"
+          variant="contained"
+          color="primary"
+        >
+          Next*/

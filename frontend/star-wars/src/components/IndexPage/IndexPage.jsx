@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import SingleRow from "./SingleRow";
 import { v4 as uuidv4 } from "uuid";
 import "./IndexPage.css";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
   table: {
@@ -21,27 +22,52 @@ function IndexPage() {
   const classes = useStyles();
 
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch("https://swapi.dev/api/planets")
+    fetch(`https://swapi.dev/api/planets/?page=${page}`)
       .then((response) => response.json())
       .then((data) => setData(data.results));
-  }, []);
+  }, [page]);
 
   return (
     <div className="starWarsTable">
       <h1>Star Wars universe planets</h1>
+      <div className="buttons">
+        <Button className="previous" onClick={() => (page > 1 ? setPage(page - 1) : setPage(1))} className="previous" variant="contained" color="primary">
+          Previous
+        </Button>
+
+        <Button onClick={() => (page < 6 ? setPage(page + 1) : setPage(6))} className="next" variant="contained" color="primary">
+          Next
+        </Button>
+      </div>
+
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell><strong>Name</strong></TableCell>
-              <TableCell align="left"><strong>Diameter</strong></TableCell>
-              <TableCell align="left"><strong>Climate</strong></TableCell>
-              <TableCell align="left"><strong>Terrain</strong></TableCell>
-              <TableCell align="left"><strong>Surface Water Percentage</strong></TableCell>
-              <TableCell align="left"><strong>Population</strong></TableCell>
-              <TableCell align="left"><strong>Residents</strong></TableCell>
+              <TableCell align="left">
+                <strong>Name</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Diameter</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Climate</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Terrain</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Surface Water Percentage</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Population</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Residents</strong>
+              </TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
