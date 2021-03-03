@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import SingleRow from "../SingleIndexPRow/SingleIndexPRow";
 import { v4 as uuidv4 } from "uuid";
 import "../../style/CSS/IndexPage/IndexPage.css";
-import Button from "@material-ui/core/Button";
+import Buttons from "../Buttons/Buttons";
+import SingleIndexPHead from "../SingleIndexPHead/SingleIndexPHead";
 
 const useStyles = makeStyles({
   table: {
@@ -33,46 +31,13 @@ function IndexPage() {
   return (
     <div className="starWarsTable">
       <h1>Star Wars universe planets</h1>
-      <div className="buttons">
-        <Button className="previous" onClick={() => (page > 1 ? setPage(page - 1) : setPage(1))} disabled={page === 1 ? true : false}
-          className="previous" variant="contained" color="primary">
-          Previous
-        </Button>
-
-        <Button onClick={() => (page < 6 ? setPage(page + 1) : setPage(6))} disabled={page === 6 ? true : false}
-          className="next" variant="contained" color="primary">
-          Next
-        </Button>
-      </div>
+      <Buttons clickNext={() => (page < 6 ? setPage(page + 1) : setPage(6))}
+        clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))} page={page} />
 
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">
-                <strong>Name</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Diameter</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Climate</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Terrain</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Surface Water Percentage</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Population</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Residents</strong>
-              </TableCell>
-              <TableCell align="left"></TableCell>
-            </TableRow>
-          </TableHead>
+          <SingleIndexPHead />
+
           <TableBody>
             {data.map((row) => (
               <SingleRow key={uuidv4()} row={row} data={data} />
