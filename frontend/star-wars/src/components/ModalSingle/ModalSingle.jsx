@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +22,16 @@ const useStyles = makeStyles({
 
 
 function ModalSingle(props) {
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://swapi.dev/api/people/?page=${props.page}`)
+      .then((response) => response.json())
+      .then((data) => setPeople(data.results));
+  }, [props.page]);
+
+  //people.map(person => console.log(person))
+
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -33,11 +43,11 @@ function ModalSingle(props) {
 
         <TableContainer component={Paper}>
           <Table size="small" aria-label="a dense table">
-            {/*<TableBody>
-              {props.data.map((row) => (
-                <ModalSingleRow key={uuidv4()} row={row} />
+            <TableBody>
+              {people.map((person) => (
+                <ModalSingleRow key={uuidv4()} row={person} />
               ))}
-            </TableBody>*/}
+            </TableBody>
           </Table>
         </TableContainer>
       </Modal.Body>
