@@ -7,3 +7,37 @@
 		text-align: left;
 	}
 }
+
+
+#load-animation {
+  position: fixed;
+  top: 40%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  z-index: '999';
+  
+  &::after {
+    content: "";
+    width: 200px;
+    height: 200px;
+    border: 24px solid #a3a3a3;
+    border-top: 24px solid black;
+    border-radius: 100%;
+    opacity: 1;
+    will-change: transform;
+    animation: spin 2s infinite linear;
+  }
+}
+
+//keyframes
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

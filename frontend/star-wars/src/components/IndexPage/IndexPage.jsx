@@ -18,14 +18,27 @@ const useStyles = makeStyles({
 
 function IndexPage() {
   const classes = useStyles();
-
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [isShown, setIsShown] = useState(false);
+
+  const rootE = document.getElementById('root');
 
   useEffect(() => {
+    if (page >= 1) {
+      rootE.style.opacity = '0.5';
+      setIsShown(true)
+    }
+
     fetch(`https://swapi.dev/api/planets/?page=${page}`)
       .then((response) => response.json())
-      .then((data) => setData(data.results));
+      .then((data) => {
+        if (page >= 1) {
+          rootE.style.opacity = '1';
+          setIsShown(false)
+        }
+        setData(data.results)
+      });
   }, [page]);
 
   return (
@@ -33,6 +46,8 @@ function IndexPage() {
       <h1>Star Wars universe planets</h1>
       <Buttons clickNext={() => (page < 6 ? setPage(page + 1) : setPage(6))}
         clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))} page={page} />
+
+      <div id="load-animation" style={{ display: `${isShown ? "flex" : "none"}` }}></div>
 
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small" aria-label="a dense table">
