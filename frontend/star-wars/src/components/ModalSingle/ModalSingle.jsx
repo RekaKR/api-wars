@@ -30,8 +30,6 @@ function ModalSingle(props) {
       .then((data) => setPeople(data.results));
   }, [props.page]);
 
-  //people.map(person => console.log(person))
-
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -60,3 +58,7 @@ function ModalSingle(props) {
 }
 
 export default ModalSingle;
+
+//(props.row.residents).map(result => console.log(result))
+//console.log(person.homeworld)
+//console.log(props.data[0].residents.includes(person.homeworld) ? "jaja" : "nemnem")

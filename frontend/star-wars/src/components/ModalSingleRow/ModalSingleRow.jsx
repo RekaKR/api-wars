@@ -13,7 +13,7 @@ function ModalSingleRow(props) {
         <TableCell align="left">{props.row.skin_color}</TableCell>
         <TableCell align="left">{props.row.eye_color}</TableCell>
         <TableCell align="left">{props.row.birth_year}</TableCell>
-        <TableCell align="left">{props.row.gender === "n/a" ? "unknown" : `${props.row.gender} - icon`}</TableCell>
+        <TableCell align="left">{props.row.gender === "n/a" ? "unknown" : (props.row.gender === "male" ? "hutyutyu" : "mutyutyu")}</TableCell>
       </TableRow>
     </>
   );

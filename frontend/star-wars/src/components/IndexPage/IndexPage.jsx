@@ -40,7 +40,7 @@ function IndexPage() {
 
           <TableBody>
             {data.map((row) => (
-              <SingleIndexPRow key={uuidv4()} row={row} page={page} setPage={setPage} />
+              <SingleIndexPRow key={uuidv4()} row={row} page={page} setPage={setPage} data={data} />
             ))}
           </TableBody>
         </Table>
@@ -50,5 +50,3 @@ function IndexPage() {
 }
 
 export default IndexPage;
-
-//row.residents.map(result => console.log(result))
