@@ -1,10 +1,9 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
 const VoteButton = () => {
   return (
-    <div>
-      <button>Vote</button>
-    </div>
+    <Button variant="contained" color="primary">Vote</Button>
   );
 };
 

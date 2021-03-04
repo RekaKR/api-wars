@@ -1,10 +1,27 @@
+*,
+html,
+body,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../../img/starwars.png");
+  background-color: white;
+}
+
 .App {
   padding: 0% 5%;
   margin: 0;
   text-align: center;
 }
 .App h1 {
+  color: white;
   text-align: left;
+  margin-top: 20px;
 }
 
 #male,

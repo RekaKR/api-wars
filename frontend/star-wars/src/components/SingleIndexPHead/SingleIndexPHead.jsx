@@ -4,31 +4,12 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 function SingleIndexPHead() {
+  const headerNames = ["Name", "Diameter", "Climate", "Terrain", "Surface Water Percentage", "Population", "Residents", ""]
+
   return (
     <TableHead>
       <TableRow>
-        <TableCell align="left">
-          <strong>Name</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Diameter</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Climate</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Terrain</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Surface Water Percentage</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Population</strong>
-        </TableCell>
-        <TableCell align="left">
-          <strong>Residents</strong>
-        </TableCell>
-        <TableCell align="left"></TableCell>
+        {headerNames.map(name => <TableCell align="left"><strong>{name}</strong></TableCell>)}
       </TableRow>
     </TableHead>
   );

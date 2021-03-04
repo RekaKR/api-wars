@@ -26,7 +26,7 @@ function IndexPage() {
 
   useEffect(() => {
     if (page >= 1) {
-      rootE.style.opacity = '0.5';
+      rootE.style.opacity = '0.7';
       setIsShown(true);
 
       fetch(`https://swapi.dev/api/planets/?page=${page}`)
@@ -39,37 +39,22 @@ function IndexPage() {
     }
   }, [page]);
 
-  console.log('right one', data);
   return (
     <div className='starWarsTable'>
       <h1>Star Wars universe planets</h1>
       <Buttons
         clickNext={() => (page < 6 ? setPage(page + 1) : setPage(6))}
-        clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))}
-        page={page}
-      />
+        clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))} page={page} />
 
-      <div
-        id='load-animation'
-        style={{ display: `${isShown ? 'flex' : 'none'}` }}
-      ></div>
+      <div id='load-animation' style={{ display: `${isShown ? 'flex' : 'none'}` }}></div>
 
       <TableContainer component={Paper}>
-        <Table
-          className={classes.table}
-          size='small'
-          aria-label='a dense table'
-        >
+        <Table className={classes.table} size='small' aria-label='a dense table'>
           <SingleIndexPHead />
 
           <TableBody>
             {data.map((row) => (
-              <SingleIndexPRow
-                key={uuidv4()}
-                row={row}
-                data={data}
-                resi={row.residents}
-              />
+              <SingleIndexPRow key={uuidv4()} row={row} data={data} resi={row.residents} />
             ))}
           </TableBody>
         </Table>

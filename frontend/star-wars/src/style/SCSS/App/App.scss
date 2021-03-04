@@ -1,13 +1,26 @@
+@use './reset';
+
+body {
+  background-image: url("../../img/starwars.png");
+  background-color: white;
+ }
+
 .App {
   padding: 0% 5%;
   margin: 0;
   text-align: center;
 
   h1 {
+    color: white;
 		text-align: left;
+    margin-top: 20px;
 	}
 }
 
+
+
+
+//icons at modals
 #male,
 #female {
   width: 40px;
