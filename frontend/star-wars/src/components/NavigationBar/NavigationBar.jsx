@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './NavigationBar.css';
-import Login from '../Login/Login';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Register from '../Register/Register';
+
+import DisplayUserName from '../DisplayUserName/DisplayUserName';
 const NavigationBar = () => {
+  // const [userName, setUserName] = useState('');
+  // useEffect(() => {
+  //   setUserName(<DisplayUserName />);
+  // });
   return (
     <div className='navigationBar'>
       <ul>
         <li>
-          <Link to='/'> Home</Link>
+          <Link to='/home'> Home</Link>
         </li>
         <li>
           <Link to=''>Planet list</Link>
@@ -23,7 +27,10 @@ const NavigationBar = () => {
           <Link to='/login'>Login</Link>
         </li>
         <li>
-          <Link to=''>Logout</Link>
+          <Link to='/user'>My account</Link>
+        </li>
+        <li>
+          <Link to='/logout'>Logout</Link>
         </li>
       </ul>
     </div>

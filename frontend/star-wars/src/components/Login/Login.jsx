@@ -10,6 +10,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { useHistory } from 'react-router-dom';
+import DisplayUserName from '../DisplayUserName/DisplayUserName';
+import { v4 as uuidv4 } from 'uuid';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -36,6 +40,9 @@ export default function SignIn() {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [error, setError] = useState(false);
+  const [response, setResponse] = useState('');
+  const [userName, setUserName] = useState('');
+  const history = useHistory();
 
   const login = () => {
     if (loginUsername && loginPassword)
@@ -48,11 +55,25 @@ export default function SignIn() {
         withCredentials: true,
         url: 'http://localhost:8000/login',
       })
-        .then((res) => console.log(res))
+        .then((res) => setResponse(res))
         .then(() => setError(false));
     else setError(true);
   };
 
+  useEffect(() => {
+    if (response) {
+      if (response.data.message === 'Succesfully authenticated.') {
+        setUserName(`Welcome ${response.data.user.username} !`);
+
+        setTimeout(function () {
+          let path = `/user`;
+          history.push(path);
+        }, 1000);
+      }
+    }
+  }, [response]);
+
+  console.log(userName);
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -63,6 +84,12 @@ export default function SignIn() {
         <Typography component='h1' variant='h5'>
           Login
         </Typography>
+        {response ? (
+          <Typography color='secondary'>{response.data.message}</Typography>
+        ) : (
+          ''
+        )}
+
         <form className={classes.form} noValidate>
           <TextField
             variant='outlined'
@@ -98,8 +125,18 @@ export default function SignIn() {
             Login
           </Button>
         </form>
-        {error ? 'Please, fill in both fields.' : ''}
+        {error ? (
+          <Typography color='secondary'>
+            Please, fill in both fields.
+          </Typography>
+        ) : (
+          ''
+        )}
       </div>
+      <div>
+        Dont have an account? <a href='/register'> Register!</a>
+      </div>
+      <DisplayUserName key={uuidv4()} name={userName} />
     </Container>
   );
 }

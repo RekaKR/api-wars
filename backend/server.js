@@ -11,7 +11,7 @@ const app = express();
 const User = require('./user');
 
 const PORT = process.env.PORT || 8000;
-
+app.use('/form', express.static('../frontend/star-wars/public'));
 //Mongo db connect
 mongoose.connect(
   'mongodb+srv://Marci:12345@marcicluster.aublm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -33,7 +33,8 @@ app.use(
   })
 );
 
-//SAVE user sessions
+//MIDDLEWARES
+
 app.use(
   session({
     secret: 'secretsessioncode',
@@ -42,10 +43,42 @@ app.use(
   })
 );
 app.use(cookieParser('secretsessioncode'));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passportConfig')(passport);
+
+//LOG IF USER IS AUTHENTICATED OR NOT AT EVERY REQUEST
+app.use((req, res, next) => {
+  if (req.user) {
+    console.log('Auser exists');
+  } else {
+    console.log('Auser non exists');
+  }
+  next();
+});
+
+//CHeck if user ios logged in
+app.get('/home', function (req, res) {
+  if (req.user) {
+    res.send(req.user);
+  }
+});
 
 //LOGIN
-app.post('/login', (req, res) => {
-  console.log(req.body);
+app.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) throw err;
+    if (!user)
+      res.send({
+        message: 'Bad username or password, try again son',
+      });
+    else {
+      req.login(user, (err) => {
+        if (err) throw err;
+        res.send({ message: 'Succesfully authenticated.', user: req.user });
+      });
+    }
+  })(req, res, next);
 });
 //REGISTER
 app.post('/register', (req, res) => {
@@ -66,7 +99,18 @@ app.post('/register', (req, res) => {
 });
 //GET USER
 app.get('/user', (req, res) => {
-  console.log(req.body);
+  console.log(res.user);
+  if (req.user) {
+    res.send(req.user);
+  } else {
+    res.send('You are not logged in, please log in to view your profile.');
+  }
 });
 
+//LOGOUT
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.send('Logged out');
+  console.log('logged out');
+});
 app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +38,7 @@ export default function SignIn() {
   const [registerPassword, setRegisterPassword] = useState('');
   const [error, setError] = useState(false);
   const [response, setResponse] = useState('');
-
+  const history = useHistory();
   const register = () => {
     if (registerUsername && registerPassword)
       axios({
@@ -53,6 +54,15 @@ export default function SignIn() {
         .then(() => setError(false));
     else setError(true);
   };
+  console.log(response);
+  useEffect(() => {
+    if (response === 'Successful registration. Log in to continue.') {
+      setTimeout(function () {
+        let path = `/login`;
+        history.push(path);
+      }, 1000);
+    }
+  }, [response]);
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -107,6 +117,9 @@ export default function SignIn() {
         ) : (
           ''
         )}
+      </div>
+      <div>
+        Already have an account? <a href='/login'> Login!</a>
       </div>
     </Container>
   );
