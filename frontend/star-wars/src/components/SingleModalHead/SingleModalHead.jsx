@@ -3,9 +3,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-function SingleModalHead() {
+function SingleModalHead(props) {
   return (
-    <TableHead>
+    <TableHead style={{ display: `${props.isShown ? "none" : "block"}` }}>
       <TableRow>
         <TableCell align="left">
           <strong>Name</strong>

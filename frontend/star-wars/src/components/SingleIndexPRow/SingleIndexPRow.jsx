@@ -31,7 +31,7 @@ function SingleRow(props) {
         <TableCell align="left"><VoteButton /></TableCell>
       </TableRow>
 
-      <ModalSingle show={modalShow} onHide={() => setModalShow(false)} page={props.page} setPage={props.setPage} data={props.data} row={props.row} />
+      <ModalSingle show={modalShow} onHide={() => setModalShow(false)} page={props.page} data={props.data} row={props.row} name={props.row.name} />
     </>
   );
 

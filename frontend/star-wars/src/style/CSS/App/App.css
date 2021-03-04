@@ -7,6 +7,11 @@
   text-align: left;
 }
 
+#male,
+#female {
+  width: 40px;
+}
+
 #load-animation {
   position: fixed;
   top: 40%;

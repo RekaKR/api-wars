@@ -53,7 +53,7 @@ function IndexPage() {
 
           <TableBody>
             {data.map((row) => (
-              <SingleIndexPRow key={uuidv4()} row={row} page={page} setPage={setPage} data={data} />
+              <SingleIndexPRow key={uuidv4()} row={row} page={page} data={data} />
             ))}
           </TableBody>
         </Table>
