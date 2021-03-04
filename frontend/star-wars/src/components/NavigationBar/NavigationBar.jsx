@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './NavigationBar.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import '../../style/CSS/NavigationBar/NavigationBar.css';
 
@@ -13,10 +12,7 @@ const NavigationBar = () => {
     <div className='navigationBar'>
       <ul>
         <li>
-          <Link to='/home'> Home</Link>
-        </li>
-        <li>
-          <Link to=''>Planet list</Link>
+          <Link to='/home'>Planet list</Link>
         </li>
         <li>
           <Link to=''>Voting statistics</Link>
