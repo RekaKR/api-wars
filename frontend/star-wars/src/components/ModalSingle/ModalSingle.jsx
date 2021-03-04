@@ -21,12 +21,8 @@ const useStyles = makeStyles({
 
 function ModalSingle(props) {
   const [people, setPeople] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isShown, setIsShown] = useState(false);
-  // props.row.residents.map((item) => console.log('fuckinye', item));
-  // console.log('modaldataresi', props.resi);
 
-  //const [hihihi, setHihihi] = useState("");
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     setIsShown(true);
@@ -41,37 +37,6 @@ function ModalSingle(props) {
     });
   }, []);
   console.log(people);
-  //people.map((person) => console.log(person.homeworld)) //az otthonokat adja ki, link
-  //(props.row.residents).map(result => console.log(result)) //az embereket adja ki, link
-
-  //az emberek linkein végig menve megnézi, hogy benne vannak-e az emberek otthonai
-  //console.log(people.map((person) => resident.includes(person.homeworld)))
-  //ha a residents listában benne van a link, akkor adja vissza a singlemodalwort, amúgy ne
-  //bug, ha benne van, mindent visszaad, nem csak azt.
-  //{people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
-
-  //console.log(resident.includes("http://swapi.dev/api/people/3/"))
-
-  //console.log(people.map((person) => resident.includes(person.homeworld)))
-
-  //let rere = resident.filter(word => (word === "http://swapi.dev/api/people/1/"));
-
-  //{ people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : setPage(page + 1))) }
-
-  /*
-      let i = 0;
-      while (i < rere.length) {
-        console.log(rere);
-        i++;
-      }
-      */
-
-  /*
-        for (let i = 0; i <= result.length; i++) {
-          i ? console.log(result) : console.log("nem jó");
-        }
-      */
-  //   }
 
   return (
     <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter'>
@@ -108,15 +73,3 @@ function ModalSingle(props) {
 }
 
 export default ModalSingle;
-
-//<SingleModalRow key={uuidv4()} row={person} />
-//(props.row.residents).map(result => console.log(result))
-//console.log(person.homeworld)
-//console.log(props.data[0].residents.includes(person.homeworld) ? "jaja" : "nemnem")
-
-/*{people.map((person) => (
-<SingleModalRow key={uuidv4()} row={person} />
-  ))}*/
-
-//  ? <SingleModalRow key={uuidv4()} row={person} /> : ""
-//{bla.map((jaja) => console.log(jaja))}
