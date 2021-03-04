@@ -1,4 +1,4 @@
-import './App.css';
+import './style/CSS/App/App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import IndexPage from './components/IndexPage/IndexPage.jsx';
@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Logout from './components/Logout/Logout';
 import User from './components/User/User';
+
 function App() {
   const [response, setResponse] = useState('');
 

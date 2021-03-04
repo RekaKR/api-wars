@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './NavigationBar.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import '../../style/CSS/NavigationBar/NavigationBar.css';
 
 import DisplayUserName from '../DisplayUserName/DisplayUserName';
 const NavigationBar = () => {

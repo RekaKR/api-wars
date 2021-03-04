@@ -1,0 +1,13 @@
+.starWarsTable {
+  padding: 0% 5%;
+}
+
+.starWarsTable .buttons {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.starWarsTable .buttons .next {
+  margin-left: 10px;
+}
+/*# sourceMappingURL=IndexPage.css.map */
