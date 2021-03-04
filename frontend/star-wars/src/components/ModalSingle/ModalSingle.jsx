@@ -42,7 +42,7 @@ function ModalSingle(props) {
       //az emberek linkein végig menve megnézi, hogy benne vannak-e az emberek otthonai
       let resident = (props.row.residents).map(result => result);
       //console.log(people.map((person) => resident.includes(person.homeworld)))
-
+      console.log(resident)
       //ha a residents listában benne van a link, akkor adja vissza a singlemodalwort, amúgy ne
       //bug, ha benne van, mindent visszaad, nem csak azt.
       //{people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
