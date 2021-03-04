@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleModalHead from '../SingleModalHead/SingleModalHead';
 import SingleModalRow from '../SingleModalRow/SingleModalRow';
 
-import TableBody from "@material-ui/core/TableBody";
+import TableBody from '@material-ui/core/TableBody';
 
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
-import { v4 as uuidv4 } from "uuid";
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
+import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles({
   table: {
@@ -23,40 +23,42 @@ function ModalSingle(props) {
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   const [isShown, setIsShown] = useState(false);
+  // props.row.residents.map((item) => console.log('fuckinye', item));
+  // console.log('modaldataresi', props.resi);
+
   //const [hihihi, setHihihi] = useState("");
 
   useEffect(() => {
-    if (page >= 1) {
-      setIsShown(true);
+    setIsShown(true);
 
-      fetch(`https://swapi.dev/api/people/?page=${page}`)
+    props.resi.map((item) => {
+      fetch(item)
         .then((response) => response.json())
         .then((data) => {
           setIsShown(false);
-          setPeople(data.results);
+          setPeople((prevState) => [...prevState, data]);
         });
+    });
+  }, []);
+  console.log(people);
+  //people.map((person) => console.log(person.homeworld)) //az otthonokat adja ki, link
+  //(props.row.residents).map(result => console.log(result)) //az embereket adja ki, link
 
-      //people.map((person) => console.log(person.homeworld)) //az otthonokat adja ki, link
-      //(props.row.residents).map(result => console.log(result)) //az embereket adja ki, link
+  //az emberek linkein végig menve megnézi, hogy benne vannak-e az emberek otthonai
+  //console.log(people.map((person) => resident.includes(person.homeworld)))
+  //ha a residents listában benne van a link, akkor adja vissza a singlemodalwort, amúgy ne
+  //bug, ha benne van, mindent visszaad, nem csak azt.
+  //{people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
 
-      //az emberek linkein végig menve megnézi, hogy benne vannak-e az emberek otthonai
-      let resident = (props.row.residents).map(result => result);
-      //console.log(people.map((person) => resident.includes(person.homeworld)))
-      console.log(resident)
-      //ha a residents listában benne van a link, akkor adja vissza a singlemodalwort, amúgy ne
-      //bug, ha benne van, mindent visszaad, nem csak azt.
-      //{people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
+  //console.log(resident.includes("http://swapi.dev/api/people/3/"))
 
-      //console.log(resident.includes("http://swapi.dev/api/people/3/"))
+  //console.log(people.map((person) => resident.includes(person.homeworld)))
 
-      //console.log(people.map((person) => resident.includes(person.homeworld)))
+  //let rere = resident.filter(word => (word === "http://swapi.dev/api/people/1/"));
 
+  //{ people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : setPage(page + 1))) }
 
-      //let rere = resident.filter(word => (word === "http://swapi.dev/api/people/1/"));
-
-      //{ people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : setPage(page + 1))) }
-
-      /*
+  /*
       let i = 0;
       while (i < rere.length) {
         console.log(rere);
@@ -64,30 +66,35 @@ function ModalSingle(props) {
       }
       */
 
-      /*
+  /*
         for (let i = 0; i <= result.length; i++) {
           i ? console.log(result) : console.log("nem jó");
         }
       */
-    }
-  }, [page]);
-
+  //   }
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter'>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Residents of {props.name}</Modal.Title>
+        <Modal.Title id='contained-modal-title-vcenter'>
+          Residents of {props.name}
+        </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className="show-grid">
+      <Modal.Body className='show-grid'>
         <SingleModalHead isShown={isShown} />
 
-        <div id="load-animation" style={{ display: `${isShown ? "flex" : "none"}` }}></div>
+        <div
+          id='load-animation'
+          style={{ display: `${isShown ? 'flex' : 'none'}` }}
+        ></div>
 
         <TableContainer component={Paper}>
-          <Table size="small" aria-label="a dense table">
+          <Table size='small' aria-label='a dense table'>
             <TableBody>
-              {people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
+              {people.map((person) => (
+                <SingleModalRow key={uuidv4()} row={person} />
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
@@ -96,7 +103,7 @@ function ModalSingle(props) {
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
-    </Modal >
+    </Modal>
   );
 }
 
@@ -111,5 +118,5 @@ export default ModalSingle;
 <SingleModalRow key={uuidv4()} row={person} />
   ))}*/
 
-  //  ? <SingleModalRow key={uuidv4()} row={person} /> : ""
-  //{bla.map((jaja) => console.log(jaja))}
+//  ? <SingleModalRow key={uuidv4()} row={person} /> : ""
+//{bla.map((jaja) => console.log(jaja))}
