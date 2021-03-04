@@ -19,29 +19,59 @@ const useStyles = makeStyles({
   },
 });
 
-
 function ModalSingle(props) {
   const [people, setPeople] = useState([]);
+  const [page, setPage] = useState(1);
   const [isShown, setIsShown] = useState(false);
+  //const [hihihi, setHihihi] = useState("");
 
   useEffect(() => {
-    if (props.page >= 1) {
+    if (page >= 1) {
       setIsShown(true);
 
-      fetch(`https://swapi.dev/api/people/?page=${props.page}`)
+      fetch(`https://swapi.dev/api/people/?page=${page}`)
         .then((response) => response.json())
         .then((data) => {
           setIsShown(false);
           setPeople(data.results);
         });
 
-      //people.map((person) => console.log(person.homeworld));
-      //let resident = (props.row.residents).map(result => result);
+      //people.map((person) => console.log(person.homeworld)) //az otthonokat adja ki, link
+      //(props.row.residents).map(result => console.log(result)) //az embereket adja ki, link
+
+      //az emberek linkein végig menve megnézi, hogy benne vannak-e az emberek otthonai
+      let resident = (props.row.residents).map(result => result);
+      //console.log(people.map((person) => resident.includes(person.homeworld)))
+
+      //ha a residents listában benne van a link, akkor adja vissza a singlemodalwort, amúgy ne
+      //bug, ha benne van, mindent visszaad, nem csak azt.
+      //{people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
+
       //console.log(resident.includes("http://swapi.dev/api/people/3/"))
 
       //console.log(people.map((person) => resident.includes(person.homeworld)))
+
+
+      //let rere = resident.filter(word => (word === "http://swapi.dev/api/people/1/"));
+
+      //{ people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : setPage(page + 1))) }
+
+      /*
+      let i = 0;
+      while (i < rere.length) {
+        console.log(rere);
+        i++;
+      }
+      */
+
+      /*
+        for (let i = 0; i <= result.length; i++) {
+          i ? console.log(result) : console.log("nem jó");
+        }
+      */
     }
-  }, [props.page]);
+  }, [page]);
+
 
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
@@ -57,8 +87,7 @@ function ModalSingle(props) {
         <TableContainer component={Paper}>
           <Table size="small" aria-label="a dense table">
             <TableBody>
-              {people.map((person) => (
-                ((props.row.residents).includes("http://swapi.dev/api/people/3/")) ? <SingleModalRow key={uuidv4()} row={person} /> : ""))}
+              {people.map((person) => ((props.row.residents).includes("http://swapi.dev/api/people/1/")) ? <SingleModalRow key={uuidv4()} row={person} /> : "")}
             </TableBody>
           </Table>
         </TableContainer>
@@ -81,3 +110,6 @@ export default ModalSingle;
 /*{people.map((person) => (
 <SingleModalRow key={uuidv4()} row={person} />
   ))}*/
+
+  //  ? <SingleModalRow key={uuidv4()} row={person} /> : ""
+  //{bla.map((jaja) => console.log(jaja))}
