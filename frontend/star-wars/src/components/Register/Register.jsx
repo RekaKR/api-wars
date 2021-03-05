@@ -68,7 +68,6 @@ export default function SignIn() {
   return (
     <Container className="RegisterContainer" component='main' maxWidth='xs'>
       <CssBaseline />
-
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

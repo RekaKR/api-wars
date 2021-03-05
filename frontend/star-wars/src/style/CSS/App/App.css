@@ -13,35 +13,33 @@ body {
   background-color: white;
 }
 
-.App {
+.app {
   padding: 0% 5%;
   margin: 0;
   text-align: center;
 }
-.App h1 {
+.app h1 {
   color: white;
   text-align: left;
   margin-top: 20px;
 }
-
-.RegisterContainer,
-.LoginContainer {
+.app .content .RegisterContainer,
+.app .content .LoginContainer {
   background-color: white;
   border-radius: 5px;
   padding-bottom: 10px;
 }
-.RegisterContainer .LoginTypography,
-.LoginContainer .LoginTypography {
+.app .content .RegisterContainer .LoginTypography,
+.app .content .LoginContainer .LoginTypography {
   color: black;
   margin-top: 5px;
+}
+.app .user {
+  background-color: white;
 }
 
 .VotingTableCell {
   width: 83%;
-}
-
-.user {
-  background-color: white;
 }
 
 #male,

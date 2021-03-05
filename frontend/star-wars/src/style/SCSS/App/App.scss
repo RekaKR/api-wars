@@ -1,11 +1,13 @@
 @use './reset';
 
+$backgroundColor: rgb(255, 255, 255);
+
 body {
   background-image: url("../../img/starwars.png");
-  background-color: white;
+  background-color: $backgroundColor;
  }
 
-.App {
+.app {
   padding: 0% 5%;
   margin: 0;
   text-align: center;
@@ -15,26 +17,28 @@ body {
 		text-align: left;
     margin-top: 20px;
 	}
-}
 
-.RegisterContainer,
-.LoginContainer {
-  background-color: white;
-  border-radius: 5px;
-  padding-bottom: 10px;
+  .content {
+    .RegisterContainer,
+    .LoginContainer {
+      background-color: white;
+      border-radius: 5px;
+      padding-bottom: 10px;
+    
+      .LoginTypography {
+        color: black;
+        margin-top: 5px;
+      }
+    }
+  }
 
-  .LoginTypography {
-    color: black;
-    margin-top: 5px;
+  .user {
+    background-color: $backgroundColor;
   }
 }
 
 .VotingTableCell {
   width: 83%;
-}
-
-.user {
-  background-color: white;
 }
 
 //icons at modals

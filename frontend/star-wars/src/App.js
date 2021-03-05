@@ -23,25 +23,31 @@ function App() {
 
   return (
     <Router>
-      <div className='App'>
+      <div className='app'>
         <NavigationBar username={response} />
+
         <div className='content'>
           <Switch>
             <Route path='/register'>
               <Register />
             </Route>
+
             <Route path='/login'>
               <Login />
             </Route>
+
             <Route path='/logout'>
               <Logout />
             </Route>
+
             <Route path='/user'>
               <User />
             </Route>
+
             <Route path='/voting'>
               <Voting />
             </Route>
+
             <Route path='/home'>
               <IndexPage username={response} />
             </Route>
