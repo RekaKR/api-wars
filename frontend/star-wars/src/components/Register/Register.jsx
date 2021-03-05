@@ -45,6 +45,7 @@ export default function SignIn() {
   const [error, setError] = useState(false);
   const [response, setResponse] = useState('');
   const history = useHistory();
+
   const register = () => {
     if (registerUsername && registerPassword)
       axios({
@@ -60,7 +61,7 @@ export default function SignIn() {
         .then(() => setError(false));
     else setError(true);
   };
-  console.log(response);
+
   useEffect(() => {
     if (response === 'Successful registration. Log in to continue.') {
       setTimeout(function () {
@@ -80,50 +81,20 @@ export default function SignIn() {
         <Typography component='h1' variant='h5' style={{ color: "black", marginTop: '5px' }}>
           Register
         </Typography>
+
         {response ? <Typography color='secondary'>{response}</Typography> : ''}
+
         <form className={classes.form} noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='userName'
-            label='Username'
-            name='userName'
-            onChange={(e) => setRegisterUsername(e.target.value)}
-            required
-          />
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            onChange={(e) => setRegisterPassword(e.target.value)}
-            required
-          />
-          <Button
-            type='button'
-            fullWidth
-            variant='contained'
-            color='primary'
-            onClick={register}
-            className={classes.submit}
-          >
+          <TextField variant='outlined' margin='normal' required fullWidth id='userName' label='Username' name='userName' onChange={(e) => setRegisterUsername(e.target.value)} required />
+          <TextField variant='outlined' margin='normal' required fullWidth name='password' label='Password' type='password' id='password' onChange={(e) => setRegisterPassword(e.target.value)} required />
+          <Button type='button' fullWidth variant='contained' color='primary' onClick={register} className={classes.submit}>
             Register
           </Button>
         </form>
-        {error ? (
-          <Typography color='secondary'>
-            Please, fill in both fields.
-          </Typography>
-        ) : (
-          ''
-        )}
+
+        {error ? (<Typography color='secondary'>Please, fill in both fields.</Typography>) : ('')}
       </div>
+
       <div>
         Already have an account? <a href='/login'> Login!</a>
       </div>

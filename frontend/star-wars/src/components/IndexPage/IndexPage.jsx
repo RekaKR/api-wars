@@ -9,7 +9,6 @@ import Buttons from '../Buttons/Buttons';
 import SingleIndexPHead from '../SingleIndexPHead/SingleIndexPHead';
 import SingleIndexPRow from '../SingleIndexPRow/SingleIndexPRow';
 import '../../style/CSS/IndexPage/IndexPage.css';
-import axios from 'axios';
 
 const useStyles = makeStyles({
   table: {
@@ -47,28 +46,15 @@ function IndexPage(props) {
         clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))}
         page={page} />
 
-      <div
-        id='load-animation'
-        style={{ display: `${isShown ? 'flex' : 'none'}` }}
-      ></div>
+      <div id='load-animation' style={{ display: `${isShown ? 'flex' : 'none'}` }}></div>
 
       <TableContainer component={Paper}>
-        <Table
-          className={classes.table}
-          size='small'
-          aria-label='a dense table'
-        >
+        <Table className={classes.table} size='small' aria-label='a dense table'>
           <SingleIndexPHead />
 
           <TableBody>
             {data.map((row) => (
-              <SingleIndexPRow
-                key={uuidv4()}
-                row={row}
-                data={data}
-                resi={row.residents}
-                showVote={props.username}
-              />
+              <SingleIndexPRow key={uuidv4()} row={row} data={data} resi={row.residents} showVote={props.username} />
             ))}
           </TableBody>
         </Table>

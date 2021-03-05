@@ -77,10 +77,10 @@ export default function SignIn() {
     }
   }, [response]);
 
-  console.log(userName);
   return (
     <Container component='main' maxWidth='xs' style={{ backgroundColor: "white", borderRadisu: "40px", paddingBottom: "10px" }}>
       <CssBaseline />
+
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOpenIcon />
@@ -90,42 +90,12 @@ export default function SignIn() {
         </Typography>
         {response ? (
           <Typography color='secondary'>{response.data.message}</Typography>
-        ) : (
-          ''
-        )}
+        ) : ('')}
 
         <form className={classes.form} noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            id='userName'
-            label='Username'
-            name='userName'
-            onChange={(e) => setLoginUsername(e.target.value)}
-            required
-          />
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            onChange={(e) => setLoginPassword(e.target.value)}
-            required
-          />
-          <Button
-            type='button'
-            fullWidth
-            variant='contained'
-            color='primary'
-            onClick={login}
-            className={classes.submit}
-          >
+          <TextField variant='outlined' margin='normal' required fullWidth id='userName' label='Username' name='userName' onChange={(e) => setLoginUsername(e.target.value)} required />
+          <TextField variant='outlined' margin='normal' required fullWidth name='password' label='Password' type='password' id='password' onChange={(e) => setLoginPassword(e.target.value)} required />
+          <Button type='button' fullWidth variant='contained' color='primary' onClick={login} className={classes.submit}>
             Login
           </Button>
         </form>
@@ -133,10 +103,9 @@ export default function SignIn() {
           <Typography color='secondary'>
             Please, fill in both fields.
           </Typography>
-        ) : (
-          ''
-        )}
+        ) : ('')}
       </div>
+
       <div>
         Dont have an account? <a href='/register'> Register!</a>
       </div>

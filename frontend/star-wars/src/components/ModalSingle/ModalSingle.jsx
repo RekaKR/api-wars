@@ -5,9 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleModalHead from '../SingleModalHead/SingleModalHead';
 import SingleModalRow from '../SingleModalRow/SingleModalRow';
 import { makeStyles } from '@material-ui/core/styles';
-
 import TableBody from '@material-ui/core/TableBody';
-
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
