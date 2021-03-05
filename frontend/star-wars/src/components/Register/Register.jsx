@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
+    marginTop: 20,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -70,13 +71,13 @@ export default function SignIn() {
   }, [response]);
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component='main' maxWidth='xs' style={{ backgroundColor: "white", borderRadisu: "40px", paddingBottom: "10px" }}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
+        <Typography component='h1' variant='h5' style={{ color: "black", marginTop: '5px' }}>
           Register
         </Typography>
         {response ? <Typography color='secondary'>{response}</Typography> : ''}

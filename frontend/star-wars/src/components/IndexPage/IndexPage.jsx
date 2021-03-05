@@ -45,8 +45,7 @@ function IndexPage(props) {
       <Buttons
         clickNext={() => (page < 6 ? setPage(page + 1) : setPage(6))}
         clickPrev={() => (page > 1 ? setPage(page - 1) : setPage(1))}
-        page={page}
-      />
+        page={page} />
 
       <div
         id='load-animation'

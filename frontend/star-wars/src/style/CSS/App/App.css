@@ -24,6 +24,10 @@ body {
   margin-top: 20px;
 }
 
+.user {
+  background-color: white;
+}
+
 #male,
 #female {
   width: 40px;
