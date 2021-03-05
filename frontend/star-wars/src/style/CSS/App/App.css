@@ -24,6 +24,22 @@ body {
   margin-top: 20px;
 }
 
+.RegisterContainer,
+.LoginContainer {
+  background-color: white;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+.RegisterContainer .LoginTypography,
+.LoginContainer .LoginTypography {
+  color: black;
+  margin-top: 5px;
+}
+
+.VotingTableCell {
+  width: 83%;
+}
+
 .user {
   background-color: white;
 }

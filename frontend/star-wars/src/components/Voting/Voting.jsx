@@ -15,10 +15,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Voting = () => {
   const handleClose = () => setModalShow(false);
-  const handleShow = () => setModalShow(true);
-
   const [modalShow, setModalShow] = useState(true);
   const [data, setData] = useState({});
+
   useEffect(() => {
     axios({
       method: 'GET',
@@ -28,17 +27,12 @@ const Voting = () => {
   }, []);
 
   let voteArr = [];
-  for (const m in data) {
-    voteArr.push({ [m]: data[m] });
+  for (const res in data) {
+    voteArr.push({ [res]: data[res] });
   }
-  console.log(voteArr);
+
   return (
-    <Modal
-      show={modalShow}
-      onHide={handleClose}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-    >
+    <Modal show={modalShow} onHide={handleClose} size='lg' aria-labelledby='contained-modal-title-vcenter'>
       <Modal.Header closeButton>
         <Modal.Title id='contained-modal-title-vcenter'>
           Voting Statistic
@@ -48,23 +42,19 @@ const Voting = () => {
       <Modal.Body className='show-grid'>
         <TableHead>
           <TableRow>
-            <TableCell align='left' style={{ width: '83%' }}>
+            <TableCell className="VotingTableCell" align='left'>
               <strong>Planet name</strong>
             </TableCell>
+
             <TableCell align='left'>
               <strong>Vote count</strong>
             </TableCell>
           </TableRow>
         </TableHead>
+
         <TableContainer component={Paper}>
           <Table size='small' aria-label='a dense table'>
-            {voteArr.map((vote) => (
-              <SingleVotingRow
-                planet={Object.keys(vote)}
-                vote={Object.values(vote)}
-                key={uuidv4()}
-              />
-            ))}
+            {voteArr.map((vote) => (<SingleVotingRow planet={Object.keys(vote)} vote={Object.values(vote)} key={uuidv4()} />))}
           </Table>
         </TableContainer>
       </Modal.Body>

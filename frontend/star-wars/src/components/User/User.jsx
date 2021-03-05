@@ -16,13 +16,12 @@ const User = () => {
 
   return (
     <div className="user">
-      {response ===
-        '"You are not logged in, please log in to view your profile."'
-        ? setTimeout(function () {
+      {response === '"You are not logged in, please log in to view your profile."' ?
+        setTimeout(function () {
           let path = `/login`;
           history.push(path);
-        })
-        : `Username: ${response}`}
+        }) :
+        `Username: ${response}`}
     </div>
   );
 };

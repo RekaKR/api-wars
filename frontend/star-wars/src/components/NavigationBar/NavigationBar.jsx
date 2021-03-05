@@ -1,5 +1,3 @@
-//needs li handling
-
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import '../../style/CSS/NavigationBar/NavigationBar.css';
@@ -12,27 +10,27 @@ const NavigationBar = (props) => {
         <li>
           <Link to='/home'>Planet list</Link>
         </li>
+
         <li>
-          <li>
-            {props.username ? <Link to='/voting'>Voting statistics</Link> : ''}
-          </li>
+          {props.username ? <Link to='/voting'>Voting statistics</Link> : ''}
         </li>
+
         <li>
           {props.username ? '' : <Link to='/register'>Registration</Link>}
         </li>
+
         <li>
           {props.username ? '' : <Link to='/login'>Login</Link>}
         </li>
+
         <li>
-          <li>
-            {props.username ? <Link to='/user'>My account</Link> : ''}
-          </li>
+          {props.username ? <Link to='/user'>My account</Link> : ''}
         </li>
+
         <li>
-          <li>
-            {props.username ? <Link to='/logout'>Logout</Link> : ''}
-          </li>
+          {props.username ? <Link to='/logout'>Logout</Link> : ''}
         </li>
+
         <li>
           <DisplayUserName username={props.username} />
         </li>

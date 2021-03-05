@@ -3,8 +3,9 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
 const VoteButton = (props) => {
+
   const vote = () => {
-    console.log('dqsd');
+    console.log('Voted');
     axios({
       method: 'POST',
       data: {

@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import { useHistory, BrowserRouter as Router, Switch, Route, Link, } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import axios from 'axios';
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -72,27 +66,36 @@ export default function SignIn() {
   }, [response]);
 
   return (
-    <Container component='main' maxWidth='xs' style={{ backgroundColor: "white", borderRadisu: "40px", paddingBottom: "10px" }}>
+    <Container className="RegisterContainer" component='main' maxWidth='xs'>
       <CssBaseline />
+
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component='h1' variant='h5' style={{ color: "black", marginTop: '5px' }}>
+
+        <Typography className="LoginTypography" component='h1' variant='h5'>
           Register
         </Typography>
 
         {response ? <Typography color='secondary'>{response}</Typography> : ''}
 
         <form className={classes.form} noValidate>
-          <TextField variant='outlined' margin='normal' required fullWidth id='userName' label='Username' name='userName' onChange={(e) => setRegisterUsername(e.target.value)} required />
-          <TextField variant='outlined' margin='normal' required fullWidth name='password' label='Password' type='password' id='password' onChange={(e) => setRegisterPassword(e.target.value)} required />
+          <TextField variant='outlined' margin='normal' fullWidth id='userName' label='Username' name='userName'
+            onChange={(e) => setRegisterUsername(e.target.value)} required />
+
+          <TextField variant='outlined' margin='normal' fullWidth id='password' type='password' name='password' label='Password'
+            onChange={(e) => setRegisterPassword(e.target.value)} required />
+
           <Button type='button' fullWidth variant='contained' color='primary' onClick={register} className={classes.submit}>
             Register
           </Button>
         </form>
 
-        {error ? (<Typography color='secondary'>Please, fill in both fields.</Typography>) : ('')}
+        {error ? (
+          <Typography color='secondary'>
+            Please, fill in both fields.
+          </Typography>) : ('')}
       </div>
 
       <div>

@@ -1,8 +1,8 @@
 import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import male from '../../style/Gender/male.svg'
-import female from '../../style/Gender/female.svg'
+import male from '../../style/img/Gender/male.svg'
+import female from '../../style/img/Gender/female.svg'
 
 function ModalSingleRow({ row }) {
   return (

@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const fs = require('fs');
-// const bodyParser = require('body-parser');
 const app = express();
 const User = require('./user');
 
@@ -20,6 +19,7 @@ fs.readFile('vote/vote.json', (err, data) => {
 
 const PORT = process.env.PORT || 8000;
 app.use('/form', express.static('../frontend/star-wars/public'));
+
 //Mongo db connect
 mongoose.connect(
   'mongodb+srv://Marci:12345@marcicluster.aublm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -31,7 +31,8 @@ mongoose.connect(
     console.log('Mongo db is connected');
   }
 );
-//Nemtom kellenek
+
+//Needed
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
@@ -42,7 +43,6 @@ app.use(
 );
 
 //MIDDLEWARES
-
 app.use(
   session({
     secret: 'secretsessioncode',
@@ -58,9 +58,9 @@ require('./passportConfig')(passport);
 //LOG IF USER IS AUTHENTICATED OR NOT AT EVERY REQUEST
 app.use((req, res, next) => {
   if (req.user) {
-    console.log('Auser exists');
+    console.log('User exists');
   } else {
-    console.log('Auser non exists');
+    console.log('User not exists');
   }
   next();
 });
@@ -88,6 +88,7 @@ app.post('/login', (req, res, next) => {
     }
   })(req, res, next);
 });
+
 //REGISTER
 app.post('/register', (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
@@ -100,11 +101,13 @@ app.post('/register', (req, res) => {
         username: req.body.username,
         password: hashedPassword,
       });
+
       await newUser.save();
       res.send('Successful registration. Log in to continue.');
     }
   });
 });
+
 //GET USER
 app.get('/user', (req, res) => {
   console.log(res.user);
@@ -114,13 +117,16 @@ app.get('/user', (req, res) => {
     res.send('You are not logged in, please log in to view your profile.');
   }
 });
+
 //VOTE
 app.post('/vote', async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
+
   let planetKey = req.body.planetName;
   voteDataRead[planetKey] = !voteDataRead[planetKey]
     ? 1
     : voteDataRead[planetKey] + 1;
+
   fs.writeFile(
     'vote/vote.json',
     JSON.stringify(voteDataRead, null, 2),
@@ -129,12 +135,15 @@ app.post('/vote', async (req, res) => {
       console.log('JSON UPDATED');
     }
   );
+
   res.send(`Succesfully voted ${req.body.planetName}`);
 });
+
 //SEND VOOTING STATISTIC
 app.get('/vote', async (req, res) => {
   res.send(voteDataRead);
 });
+
 //LOGOUT
 app.get('/logout', (req, res) => {
   req.logout();

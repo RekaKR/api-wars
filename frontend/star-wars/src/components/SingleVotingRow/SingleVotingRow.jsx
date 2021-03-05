@@ -9,7 +9,7 @@ function SingleVotingRow(props) {
         <TableCell component='th' scope='row'>
           {props.planet}
         </TableCell>
-        <TableCell align='left'>{props.vote} </TableCell>
+        <TableCell align='left'>{props.vote}</TableCell>
       </TableRow>
     </>
   );
