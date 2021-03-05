@@ -56,9 +56,7 @@ function IndexPage(props) {
           <SingleIndexPHead />
 
           <TableBody>
-            {data.map((row) => (
-              <SingleIndexPRow key={uuidv4()} row={row} resi={row.residents} showVote={props.username} />
-            ))}
+            {data.map((row) => (<SingleIndexPRow key={uuidv4()} row={row} resi={row.residents} showVote={props.username} />))}
           </TableBody>
 
         </Table>

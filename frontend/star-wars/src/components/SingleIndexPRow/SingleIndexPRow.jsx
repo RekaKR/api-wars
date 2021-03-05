@@ -11,7 +11,6 @@ function separateNumber(x) {
 }
 
 function SingleRow({ row, resi, showVote }) {
-
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -24,8 +23,8 @@ function SingleRow({ row, resi, showVote }) {
         <TableCell align='left'>{row.surface_water === 'unknown' ? 'unknown' : `${row.surface_water}%`}</TableCell>
         <TableCell align='left'>{row.population === 'unknown' ? 'unknown' : `${separateNumber(row.population)} people`}</TableCell>
         <TableCell align='left'>
-          {row.residents.length === 0 ? ('No known residents') : (
-            <Button onClick={() => setModalShow(true)} variant='contained' color='primary'>
+          {row.residents.length === 0 ? ('No known residents')
+            : (<Button onClick={() => setModalShow(true)} variant='contained' color='primary'>
               {row.residents.length} resident(s)
             </Button>)}
         </TableCell>
@@ -33,7 +32,7 @@ function SingleRow({ row, resi, showVote }) {
       </TableRow>
 
       {modalShow ?
-        (<ModalSingle show={modalShow} onHide={() => setModalShow(false)} row={row} name={row.name} resi={resi} />) : ('')}
+        (<ModalSingle show={modalShow} onHide={() => setModalShow(false)} name={row.name} resi={resi} />) : ('')}
     </>
   );
 }
