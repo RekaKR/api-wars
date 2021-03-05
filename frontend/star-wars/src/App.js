@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Logout from './components/Logout/Logout';
 import User from './components/User/User';
-
+import Voting from './components/Voting/Voting';
 function App() {
   const [response, setResponse] = useState('');
 
@@ -18,13 +18,13 @@ function App() {
       method: 'GET',
       withCredentials: true,
       url: 'http://localhost:8000/home',
-    }).then((res) => setResponse(JSON.stringify(res.data)));
+    }).then((res) => setResponse(res.data.username));
   });
   console.log('App response logging: ', response);
   return (
     <Router>
       <div className='App'>
-        <NavigationBar />
+        <NavigationBar username={response} />
         <div className='content'>
           <Switch>
             <Route path='/register'>
@@ -39,8 +39,11 @@ function App() {
             <Route path='/user'>
               <User />
             </Route>
+            <Route path='/voting'>
+              <Voting />
+            </Route>
             <Route path='/home'>
-              <IndexPage />
+              <IndexPage username={response} />
             </Route>
           </Switch>
         </div>

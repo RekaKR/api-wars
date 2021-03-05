@@ -36,7 +36,6 @@ function ModalSingle(props) {
         });
     });
   }, []);
-  console.log(people);
 
   return (
     <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter'>

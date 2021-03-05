@@ -67,11 +67,10 @@ export default function SignIn() {
   useEffect(() => {
     if (response) {
       if (response.data.message === 'Succesfully authenticated.') {
-        setUserName(`Welcome ${response.data.user.username} !`);
+        setUserName(`Signed in ${response.data.user.username} !`);
 
         setTimeout(function () {
-          let path = `/user`;
-          history.push(path);
+          window.location.href = '/home';
         }, 1000);
       }
     }

@@ -9,6 +9,7 @@ import Buttons from '../Buttons/Buttons';
 import SingleIndexPHead from '../SingleIndexPHead/SingleIndexPHead';
 import SingleIndexPRow from '../SingleIndexPRow/SingleIndexPRow';
 import '../../style/CSS/IndexPage/IndexPage.css';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   table: {
@@ -16,12 +17,11 @@ const useStyles = makeStyles({
   },
 });
 
-function IndexPage() {
+function IndexPage(props) {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isShown, setIsShown] = useState(false);
-
   const rootE = document.getElementById('root');
 
   useEffect(() => {
@@ -69,6 +69,7 @@ function IndexPage() {
                 row={row}
                 data={data}
                 resi={row.residents}
+                showVote={props.username}
               />
             ))}
           </TableBody>

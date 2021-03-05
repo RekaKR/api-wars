@@ -43,7 +43,7 @@ function SingleRow(props) {
           )}
         </TableCell>
         <TableCell align='left'>
-          <VoteButton />
+          {props.showVote ? <VoteButton name={props.row.name} /> : ''}
         </TableCell>
       </TableRow>
 

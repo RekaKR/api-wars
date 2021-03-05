@@ -13,6 +13,11 @@ const Logout = () => {
         console.log('logged out');
       });
   });
+  useEffect(() => {
+    if (response) {
+      window.location.href = '/home';
+    }
+  }, [response]);
   return (
     <div>
       <h1>{response ? response : ''}</h1>

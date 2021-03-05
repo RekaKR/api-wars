@@ -6,10 +6,17 @@ const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
-
+const fs = require('fs');
 // const bodyParser = require('body-parser');
 const app = express();
 const User = require('./user');
+
+//READ VOTING JSON
+let voteDataRead = '';
+fs.readFile('vote/vote.json', (err, data) => {
+  if (err) throw err;
+  voteDataRead = JSON.parse(data);
+});
 
 const PORT = process.env.PORT || 8000;
 app.use('/form', express.static('../frontend/star-wars/public'));
@@ -107,7 +114,27 @@ app.get('/user', (req, res) => {
     res.send('You are not logged in, please log in to view your profile.');
   }
 });
-
+//VOTE
+app.post('/vote', async (req, res) => {
+  console.log(req.body);
+  let planetKey = req.body.planetName;
+  voteDataRead[planetKey] = !voteDataRead[planetKey]
+    ? 1
+    : voteDataRead[planetKey] + 1;
+  fs.writeFile(
+    'vote/vote.json',
+    JSON.stringify(voteDataRead, null, 2),
+    function (err) {
+      if (err) return console.log(err);
+      console.log('JSON UPDATED');
+    }
+  );
+  res.send(`Succesfully voted ${req.body.planetName}`);
+});
+//SEND VOOTING STATISTIC
+app.get('/vote', async (req, res) => {
+  res.send(voteDataRead);
+});
 //LOGOUT
 app.get('/logout', (req, res) => {
   req.logout();

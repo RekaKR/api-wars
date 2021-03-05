@@ -9,7 +9,7 @@ const User = () => {
       method: 'GET',
       withCredentials: true,
       url: 'http://localhost:8000/user',
-    }).then((res) => setResponse(JSON.stringify(res.data)));
+    }).then((res) => setResponse(res.data.username));
   });
   return (
     <div>
@@ -19,7 +19,7 @@ const User = () => {
             let path = `/login`;
             history.push(path);
           })
-        : response}
+        : `Username: ${response}`}
     </div>
   );
 };
