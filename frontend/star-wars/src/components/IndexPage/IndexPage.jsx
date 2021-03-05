@@ -26,7 +26,7 @@ function IndexPage(props) {
 
   useEffect(() => {
     if (page >= 1) {
-      rootE.style.opacity = '0.5';
+      rootE.style.opacity = '0.7';
       setIsShown(true);
 
       fetch(`https://swapi.dev/api/planets/?page=${page}`)
@@ -39,7 +39,6 @@ function IndexPage(props) {
     }
   }, [page]);
 
-  console.log('right one', data);
   return (
     <div className='starWarsTable'>
       <h1>Star Wars universe planets</h1>
