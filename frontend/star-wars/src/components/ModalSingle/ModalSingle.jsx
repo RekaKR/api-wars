@@ -46,16 +46,10 @@ function ModalSingle(props) {
 
       <Modal.Body className='show-grid'>
         <SingleModalHead isShown={isShown} />
-
         <div id='load-animation' style={{ display: `${isShown ? 'flex' : 'none'}` }}></div>
-
         <TableContainer component={Paper}>
           <Table className={classes.table} size='small' aria-label='a dense table'>
-            <TableBody>
-              {people.map((person) => (
-                <SingleModalRow key={uuidv4()} row={person} />
-              ))}
-            </TableBody>
+            <TableBody>{people.map((person) => (<SingleModalRow key={uuidv4()} row={person} />))}</TableBody>
           </Table>
         </TableContainer>
       </Modal.Body>

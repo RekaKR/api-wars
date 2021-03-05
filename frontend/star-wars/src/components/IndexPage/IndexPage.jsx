@@ -18,9 +18,11 @@ const useStyles = makeStyles({
 
 function IndexPage(props) {
   const classes = useStyles();
+
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isShown, setIsShown] = useState(false);
+
   const rootE = document.getElementById('root');
 
   useEffect(() => {
@@ -50,13 +52,15 @@ function IndexPage(props) {
 
       <TableContainer component={Paper}>
         <Table className={classes.table} size='small' aria-label='a dense table'>
+
           <SingleIndexPHead />
 
           <TableBody>
             {data.map((row) => (
-              <SingleIndexPRow key={uuidv4()} row={row} data={data} resi={row.residents} showVote={props.username} />
+              <SingleIndexPRow key={uuidv4()} row={row} resi={row.residents} showVote={props.username} />
             ))}
           </TableBody>
+
         </Table>
       </TableContainer>
     </div>

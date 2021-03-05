@@ -10,32 +10,30 @@ function separateNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-function SingleRow(props) {
+function SingleRow({ row, resi, showVote }) {
+
   const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
-      <TableRow key={props.row.name}>
-        <TableCell component='th' scope='row'>{props.row.name}</TableCell>
-        <TableCell align='left'>{separateNumber(props.row.diameter)} km</TableCell>
-        <TableCell align='left'>{props.row.climate}</TableCell>
-        <TableCell align='left'>{props.row.terrain}</TableCell>
-        <TableCell align='left'>{props.row.surface_water === 'unknown' ? 'unknown' : `${props.row.surface_water}%`}</TableCell>
-        <TableCell align='left'>{props.row.population === 'unknown' ? 'unknown' : `${separateNumber(props.row.population)} people`}</TableCell>
+      <TableRow>
+        <TableCell component='th' scope='row'>{row.name}</TableCell>
+        <TableCell align='left'>{separateNumber(row.diameter)} km</TableCell>
+        <TableCell align='left'>{row.climate}</TableCell>
+        <TableCell align='left'>{row.terrain}</TableCell>
+        <TableCell align='left'>{row.surface_water === 'unknown' ? 'unknown' : `${row.surface_water}%`}</TableCell>
+        <TableCell align='left'>{row.population === 'unknown' ? 'unknown' : `${separateNumber(row.population)} people`}</TableCell>
         <TableCell align='left'>
-          {props.row.residents.length === 0 ? ('No known residents') : (
-
+          {row.residents.length === 0 ? ('No known residents') : (
             <Button onClick={() => setModalShow(true)} variant='contained' color='primary'>
-              {props.row.residents.length} resident(s)
-            </Button>
-          )}
+              {row.residents.length} resident(s)
+            </Button>)}
         </TableCell>
-        <TableCell align='left'>{props.showVote ? <VoteButton name={props.row.name} /> : ''}</TableCell>
+        <TableCell align='left'>{showVote ? <VoteButton name={row.name} /> : ''}</TableCell>
       </TableRow>
 
-      {modalShow ? (
-        <ModalSingle show={modalShow} onHide={() => setModalShow(false)} data={props.data} row={props.row} name={props.row.name} resi={props.resi} />)
-        : ('')}
+      {modalShow ?
+        (<ModalSingle show={modalShow} onHide={() => setModalShow(false)} row={row} name={row.name} resi={resi} />) : ('')}
     </>
   );
 }

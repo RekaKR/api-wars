@@ -1,14 +1,16 @@
-import './style/CSS/App/App.css';
+//navigation handling
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import IndexPage from './components/IndexPage/IndexPage.jsx';
-import NavigationBar from './components/NavigationBar/NavigationBar';
-import Login from './components/Login/Login';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import User from './components/User/User';
 import Voting from './components/Voting/Voting';
+import IndexPage from './components/IndexPage/IndexPage.jsx';
+import './style/CSS/App/App.css';
 
 function App() {
   const [response, setResponse] = useState('');
