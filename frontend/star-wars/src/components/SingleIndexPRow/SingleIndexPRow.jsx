@@ -10,7 +10,7 @@ function separateNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-function SingleRow({ row, resi, showVote }) {
+function SingleIndexPRow({ row, resi, showVote }) {
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -37,4 +37,4 @@ function SingleRow({ row, resi, showVote }) {
   );
 }
 
-export default SingleRow;
+export default SingleIndexPRow;
